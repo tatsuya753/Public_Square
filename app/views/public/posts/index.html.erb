@@ -8,7 +8,8 @@
       <div class="col-10 my-3 border">
         <div class="my-1">
           <%= image_tag post.user.get_profile_image(80, 80), class: "rounded-circle" %>
-          <%= post.user.name %>
+            <span class="mx-4"><%= post.user.name %></span>
+          <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
         </div>
         <span class="lead font-weight-bold"><%= safe_join(post.body.split("\n"), tag(:br)) %></span>
       </div>
@@ -16,5 +17,3 @@
 
   </div>
 </div>
-
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "border rounded p-2 text-dark" %>

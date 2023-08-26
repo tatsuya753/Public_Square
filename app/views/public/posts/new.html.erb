@@ -6,9 +6,11 @@
 
       <div class="col-10 mx-auto my-5">
         <%= f.text_area :body, class: "form-control form-control-lg", placeholder:"投稿内容" %>
-        <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
+        <%= f.submit '投稿', class:"btn btn-lg btn-block btn-success mt-4" %>
       </div>
 
     </div>
   </div>
 <% end %>
+
+<%= javascript_pack_tag 'form' %>
