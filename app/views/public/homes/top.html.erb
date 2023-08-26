@@ -1,2 +1,17 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class='mx-auto col-11 my-5 text-center'>
+
+      <h1>ようこそ<strong>Public Square</strong>へ！</h1>
+
+      <div class="col-10 mx-auto">
+        <div class="row">
+          <%= link_to 'Log in',new_user_session_path, class: "btn btn-info btn-md btn-block my-3 sign_in" %>
+        </div>
+        <div class="row">
+          <%= link_to 'Sign up',new_user_registration_path, class: "btn btn-success btn-md btn-block sign_up" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
