@@ -1,10 +1,20 @@
-<h1>投稿一覧</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-10 text-center my-5">
+      <h1>投稿一覧</h1>
+    </div>
 
+    <% @posts.each do |post| %>
+      <div class="col-10 my-3 border">
+        <div class="my-1">
+          <%= image_tag post.user.get_profile_image(80, 80), class: "rounded-circle" %>
+          <%= post.user.name %>
+        </div>
+        <span class="lead font-weight-bold"><%= safe_join(post.body.split("\n"), tag(:br)) %></span>
+      </div>
+    <% end %>
 
-<% @posts.each do |post| %>
-<div>
-<%=safe_join(post.body.split("\n"),tag(:br))%>
+  </div>
 </div>
-<% end %>
 
 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "border rounded p-2 text-dark" %>
