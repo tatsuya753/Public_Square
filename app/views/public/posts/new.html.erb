@@ -4,9 +4,12 @@
   <div class="container">
     <div class="row">
 
-      <div class="col-10 mx-auto my-5">
+      <div class="col-11 text-right mb-2">
+          <button type="submit" class="btn btn-success btn-lg rounded-circle"><i class="fa-solid fa-paper-plane"></i></button>
+      </div>
+
+      <div class="col-10 mx-auto">
         <%= f.text_area :body, class: "form-control form-control-lg", placeholder:"投稿内容" %>
-        <%= f.submit '投稿', class:"btn btn-lg btn-block btn-success mt-4" %>
       </div>
 
     </div>
