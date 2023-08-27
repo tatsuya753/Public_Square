@@ -1,11 +1,12 @@
-<h1 class="text-center my-4">新規投稿</h1>
+<h1 class="text-center my-5">新規投稿</h1>
 
 <%= form_with model: @post do |f| %>
   <div class="container">
     <div class="row">
 
       <div class="col-11 text-right mb-2">
-          <button type="submit" class="btn btn-success btn-lg rounded-circle"><i class="fa-solid fa-paper-plane"></i></button>
+        <%= f.file_field :image, accept: "image/*", class: "w-75" %>
+        <button type="submit" class="btn btn-success btn-lg rounded-circle"><i class="fa-solid fa-paper-plane"></i></button>
       </div>
 
       <div class="col-10 mx-auto">

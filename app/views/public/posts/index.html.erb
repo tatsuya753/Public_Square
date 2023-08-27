@@ -12,7 +12,16 @@
           <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
         </div>
         <span class="lead font-weight-bold"><%= safe_join(post.body.split("\n"), tag(:br)) %></span>
+
+        <div class="text-center">
+          <% if post.image.present? %>
+            <%= image_tag post.image, size: "500x500"%>
+          <% else %>
+          <% end %>
+        </div>
+
       </div>
+
     <% end %>
 
   </div>
