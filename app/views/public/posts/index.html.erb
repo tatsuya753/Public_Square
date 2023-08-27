@@ -7,11 +7,15 @@
     <% @posts.each do |post| %>
       <div class="col-10 my-3 border">
         <div class="my-1">
-          <%= image_tag post.user.get_profile_image(80, 80), class: "rounded-circle" %>
-            <span class="mx-4"><%= post.user.name %></span>
+          <%= link_to user_path(post.user), class: 'nav-link' do %>
+            <%= image_tag post.user.get_profile_image(80, 80), class: "rounded-circle" %>
+          <% end %>
+          <span class="mx-4"><strong><%= post.user.name %></strong></span>
           <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
         </div>
         <span class="lead font-weight-bold"><%= safe_join(post.body.split("\n"), tag(:br)) %></span>
+
+        <%= render 'favorite', post: post %>
 
         <div class="text-center">
           <% if post.image.present? %>
@@ -21,7 +25,6 @@
         </div>
 
       </div>
-
     <% end %>
 
   </div>
