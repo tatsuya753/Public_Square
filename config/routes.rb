@@ -21,6 +21,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   scope module: :public do
     root to: "homes#top"
     resources :users, only: [:show, :edit, :update, :destroy] do
+      collection do
+        # 退会確認画面
+        get  '/users/check' => 'users#check'
+      end
       member do
         get :follows, :followers
       end
