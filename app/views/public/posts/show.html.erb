@@ -1,21 +1,80 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-10 text-center">
+      <h1 id="show">投稿詳細</h1>
+    </div>
 
+    <div class="col-10 my-3 border p-0">
+        <div class="my-1">
+          <%= link_to user_path(@post.user), class: 'nav-link col-lg-5' do %>
+            <%= image_tag @post.user.get_profile_image(80, 80), class: "rounded-circle" %>
+            <span class="mx-5"><strong><%= @post.user.name %></strong></span>
+          <% end %>
+        </div>
 
-<div>
-  <p>コメント件数：<%= @post.post_comments.count %></p>
-  <% @post.post_comments.each do |post_comment| %>
-    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
-    <%= post_comment.user.name %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %><%= post_comment.comment %>
-    <% if post_comment.user == current_user %>
-      <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
-    <% end %>
-  <% end %>
-</div>
-<div>
-  <%= form_with model: [@post, @post_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
+        <div class="m-3">
+          <%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+        </div>
+
+       <div class="DivLink" data-post-id="<%= @post.id %>">
+          <div class="m-3">
+            <span class="lead font-weight-bold"><%= safe_join(@post.body.split("\n"), tag(:br)) %></span>
+          </div>
+
+          <div class="text-center mt-5">
+            <% if @post.image.present? %>
+              <%= image_tag @post.image, size: "500x500"%>
+            <% else %>
+            <% end %>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-2 m-3 ml-5">
+              <%= render 'favorite', post: @post %>
+            </div>
+            <div class="col-2 mt-3">
+              <%= link_to "#{@post.post_comments.count} コメント", post_path(@post) %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      </div>
+
+      <div>
+        <p>コメント件数：<%= @post.post_comments.count %></p>
+          <% @post.post_comments.each do |post_comment| %>
+            <div class="col-12">
+              <div class="row mt-4">
+                <div class="col-lg-1">
+                  <%= image_tag post_comment.user.get_profile_image(80,80), class: "rounded-circle" %>
+                </div>
+                <div class="col-lg-2 ml-5">
+                  <%= post_comment.user.name %>
+                </div>
+                <div class="col-lg-2 mx-4">
+                  <%= post_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                </div>
+                <div class="col-4 mx-4 text-break">
+                  <%= post_comment.comment %>
+                </div>
+                  <% if post_comment.user == current_user %>
+                <div class="mr-auto">
+                  <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-danger text-light" %>
+                </div>
+                  <% end %>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="col-4 mt-5">
+        <%= form_with model: [@post, @post_comment] do |f| %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+          <%= f.submit "送信する" %>
+        <% end %>
+      </div>
+
+  </div>
 </div>

@@ -5,29 +5,44 @@
     </div>
 
     <% @posts.each do |post| %>
-      <div class="col-10 my-3 border">
+      <div class="col-10 my-3 border p-0">
         <div class="my-1">
-          <%= link_to user_path(post.user), class: 'nav-link' do %>
+          <%= link_to user_path(post.user), class: 'nav-link col-lg-5' do %>
             <%= image_tag post.user.get_profile_image(80, 80), class: "rounded-circle" %>
+            <span class="mx-5"><strong><%= post.user.name %></strong></span>
           <% end %>
-          <span class="mx-4"><strong><%= post.user.name %></strong></span>
+        </div>
+
+        <div class="m-3">
           <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
         </div>
-        <span class="lead font-weight-bold"><%= safe_join(post.body.split("\n"), tag(:br)) %></span>
 
-        <%= render 'favorite', post: post %>
+       <div class="DivLink" data-post-id="<%= post.id %>">
+          <div class="m-3">
+            <span class="lead font-weight-bold"><%= safe_join(post.body.split("\n"), tag(:br)) %></span>
+          </div>
 
-        <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
+          <div class="text-center mt-5">
+            <% if post.image.present? %>
+              <%= image_tag post.image, size: "500x500"%>
+            <% else %>
+            <% end %>
+          </div>
 
-        <div class="text-center">
-          <% if post.image.present? %>
-            <%= image_tag post.image, size: "500x500"%>
-          <% else %>
-          <% end %>
+          <div class="row mt-5">
+            <div class="col-2 m-3 ml-5">
+              <%= render 'favorite', post: post %>
+            </div>
+            <div class="col-2 mt-3">
+              <%= link_to "#{post.post_comments.count} コメント", post_path(post) %>
+            </div>
+          </div>
+
         </div>
-
       </div>
     <% end %>
 
   </div>
 </div>
+
+<%= javascript_pack_tag 'post_detail' %>

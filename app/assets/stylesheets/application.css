@@ -36,3 +36,25 @@ footer {
   height: 150px;
   background-color: #bee0c2;
 }
+
+A:visited {
+    color: #0072ff;
+    text-decoration: none;
+}
+A:link {
+    color: #0072ff;
+    text-decoration: none;
+}
+A:hover{
+    color:#ff6a00;
+    text-decoration:underline;
+}
+A:active {
+    color: #ff6a00;
+    text-decoration: underline;
+}
+
+.DivLink {
+    position: relative;
+    cursor: pointer;
+}
