@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10 text-center my-5">
+      <h1>投稿一覧</h1>
+    </div>
+
+    <% @posts.each do |post| %>
+      <div class="col-10 my-3 border p-0">
+        <div class="col-10 my-1">
+          <%= link_to admin_user_path(post.user), class: 'nav-link col-lg-12' do %>
+            <%= image_tag post.user.get_profile_image(80, 80), class: "col-2 rounded-circle" %>
+            <span class="col-3 mx-5"><strong><%= post.user.name %></strong></span>
+          <% end %>
+        </div>
+
+        <div class="m-3">
+          <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+        </div>
+
+       <div class="DivLink" data-post-id="<%= post.id %>">
+          <div class="m-3">
+            <span class="lead font-weight-bold"><%= safe_join(post.body.split("\n"), tag(:br)) %></span>
+          </div>
+
+          <div class="text-center mt-5">
+            <% if post.image.present? %>
+              <%= image_tag post.image, size: "500x500"%>
+            <% else %>
+            <% end %>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-2 m-3 ml-5">
+              <%= post.favorites.count %> いいね
+            </div>
+            <div class="col-6 mt-3">
+              <%= link_to "#{post.post_comments.count} コメント", post_path(post) %>
+            </div>
+            <div class="col-3 text-right">
+              <%= link_to "詳細へ", admin_post_path(post), class: 'btn btn-info text-white' %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>
