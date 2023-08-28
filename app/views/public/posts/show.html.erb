@@ -32,8 +32,11 @@
             <div class="col-2 m-3 ml-5">
               <%= render 'favorite', post: @post %>
             </div>
-            <div class="col-2 mt-3">
+            <div class="col-6 mt-3">
               <%= link_to "#{@post.post_comments.count} コメント", post_path(@post) %>
+            </div>
+            <div class="col-3 text-right mt-3">
+              <%= link_to "削除", post_path(@post.id), method: :delete, class: 'col-6 btn btn-danger text-white', "data-confirm" => "本当に削除しますか？" %>
             </div>
           </div>
 
