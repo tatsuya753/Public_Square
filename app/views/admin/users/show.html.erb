@@ -20,9 +20,8 @@
           </tr>
         </table>
 
-        <div class="form-group col-11 d-flex justify-content-around">
-          <%= user.submit '変更を保存', class: "btn btn-success", data: {confirm: "変更を保存しますか？"} %>
-          <%= link_to "削除", admin_user_path(@user), method: :delete, class: "btn btn-danger text-light", "data-confirm" => "本当に削除しますか？" %>
+        <div class="form-group col-11 d-flex justify-content-center mt-5">
+          <%= link_to "削除", admin_user_path(@user), method: :delete, class: "btn btn-danger text-light col-3", "data-confirm" => "本当に削除しますか？" %>
         </div>
       <% end %>
     </div>
