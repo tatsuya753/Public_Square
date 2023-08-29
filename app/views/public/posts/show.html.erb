@@ -5,18 +5,20 @@
     </div>
 
     <div class="col-10 my-3 border p-0">
-        <div class="my-1">
-          <%= link_to user_path(@post.user), class: 'nav-link col-lg-5' do %>
+        <div class="row">
+          <%= link_to user_path(@post.user), class: "col-md-7 text-decoration-none" do %>
             <%= image_tag @post.user.get_profile_image(80, 80), class: "rounded-circle" %>
             <span class="mx-5"><strong><%= @post.user.name %></strong></span>
           <% end %>
+            <div class="col-md-2 d-flex align-items-center" id="favorite_<%= @post.id %>">
+              <%= render 'public/favorites/favorite', post: @post %>
+            </div>
+            <div class="col-md-3 d-flex align-items-center">
+              <%= link_to "#{@post.post_comments.count} コメント", post_path(@post) %>
+            </div>
         </div>
 
-        <div class="m-3">
-          <%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-        </div>
-
-       <div class="DivLink" data-post-id="<%= @post.id %>">
+        <div class="DivLink" data-post-id="<%= @post.id %>">
           <div class="m-3">
             <span class="lead font-weight-bold"><%= safe_join(@post.body.split("\n"), tag(:br)) %></span>
           </div>
@@ -27,19 +29,15 @@
             <% else %>
             <% end %>
           </div>
-
-          <div class="row mt-5">
-            <div class="col-2 m-3 ml-5">
-              <%= render 'favorite', post: @post %>
-            </div>
-            <div class="col-6 mt-3">
-              <%= link_to "#{@post.post_comments.count} コメント", post_path(@post) %>
-            </div>
-            <div class="col-3 text-right mt-3">
-              <%= link_to "削除", post_path(@post.id), method: :delete, class: 'col-6 btn btn-danger text-white', "data-confirm" => "本当に削除しますか？" %>
-            </div>
+          <div class="m-3 text-right">
+            <%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
           </div>
 
+          <% if @post.user == current_user %>
+            <div class="col-12 text-right mt-3 mb-1">
+              <%= link_to "削除", post_path(@post.id), method: :delete, class: 'col-2 btn btn-danger text-white', "data-confirm" => "本当に削除しますか？" %>
+            </div>
+          <% end %>
         </div>
       </div>
 
