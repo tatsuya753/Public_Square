@@ -37,6 +37,11 @@ footer {
   background-color: #bee0c2;
 }
 
+.user_name {
+  font-size: 1.3rem;
+  color: black;
+}
+
 A:visited {
     color: #0072ff;
     text-decoration: none;

@@ -1,22 +1,24 @@
 <div class="container">
   <div class="row">
-    <div class="col-10 text-center">
+    <div class="col-10 text-center my-5">
       <h1 id="show">投稿詳細</h1>
     </div>
 
     <div class="col-10 my-3 border p-0">
-        <div class="my-1">
-          <%= link_to admin_user_path(@post.user), class: 'nav-link col-lg-5' do %>
+        <div class="row">
+          <%= link_to admin_user_path(@post.user), class: "col-md-7 text-decoration-none text-truncate" do %>
             <%= image_tag @post.user.get_profile_image(80, 80), class: "rounded-circle" %>
-            <span class="mx-5"><strong><%= @post.user.name %></strong></span>
+            <span class="mx-5 user_name"><strong><%= @post.user.name %></strong></span>
           <% end %>
+            <div class="col-md-2 d-flex align-items-center my-2" id="favorite_<%= @post.id %>">
+              <i class="fa-regular fa-heart fa-lg"><%= @post.favorites.count %></i>
+            </div>
+            <div class="col-md-3 d-flex align-items-center my-2">
+              <%= render 'public/post_comments/comment_count', post: @post %>
+            </div>
         </div>
 
-        <div class="m-3">
-          <%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-        </div>
-
-       <div class="DivLink" data-post-id="<%= @post.id %>">
+        <div>
           <div class="m-3">
             <span class="lead font-weight-bold"><%= safe_join(@post.body.split("\n"), tag(:br)) %></span>
           </div>
@@ -27,50 +29,19 @@
             <% else %>
             <% end %>
           </div>
-
-          <div class="row mt-5">
-            <div class="col-2 m-3 ml-5">
-              <%= @post.favorites.count %> いいね
-            </div>
-            <div class="col-6 mt-3">
-              <%= link_to "#{@post.post_comments.count} コメント", post_path(@post) %>
-            </div>
-            <div class="col-3 text-right mt-3">
-              <%= link_to "削除", admin_post_path(@post.id), method: :delete, class: 'col-6 btn btn-danger text-white', "data-confirm" => "本当に削除しますか？" %>
-            </div>
+          <div class="m-3 text-right">
+            <%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
           </div>
 
-        </div>
-      </div>
-
-      </div>
-
-      <div>
-        <p>コメント件数：<%= @post.post_comments.count %></p>
-          <% @post.post_comments.each do |post_comment| %>
-            <div class="col-12">
-              <div class="row mt-4">
-                <div class="col-lg-1">
-                  <%= image_tag post_comment.user.get_profile_image(80,80), class: "rounded-circle" %>
-                </div>
-                <div class="col-lg-2 ml-5">
-                  <%= post_comment.user.name %>
-                </div>
-                <div class="col-lg-2 mx-4">
-                  <%= post_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-                </div>
-                <div class="col-4 mx-4 text-break">
-                  <%= post_comment.comment %>
-                </div>
-                  <% if post_comment.user == current_user %>
-                <div class="mr-auto">
-                  <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-danger text-light" %>
-                </div>
-                  <% end %>
-              </div>
+            <div class="col-12 text-right mt-2 mb-2">
+              <%= link_to "削除", admin_post_path(@post.id), method: :delete, class: 'col-2 btn btn-lg btn-danger text-white', "data-confirm" => "本当に削除しますか？" %>
             </div>
-        <% end %>
-      </div>
+        </div>
 
+      </div>
+  </div>
+
+  <div id="post-comments">
+    <%= render "public/post_comments/show" , { post: @post , post_comment: @post_comment } %><br>
   </div>
 </div>

@@ -7,9 +7,9 @@
     <% @posts.each do |post| %>
       <div class="col-10 my-3 border p-0">
         <div class="row">
-          <%= link_to user_path(post.user), class: "col-md-7 text-decoration-none" do %>
+          <%= link_to user_path(post.user), class: "col-md-7 text-decoration-none text-truncate" do %>
             <%= image_tag post.user.get_profile_image(80, 80), class: "rounded-circle" %>
-            <span class="mx-5"><strong><%= post.user.name %></strong></span>
+            <span class="mx-5 user_name"><strong><%= post.user.name %></strong></span>
           <% end %>
 
             <div class="col-md-2 d-flex align-items-center my-2" id="favorite_<%= post.id %>">

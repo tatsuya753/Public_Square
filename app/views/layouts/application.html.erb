@@ -27,15 +27,21 @@
               <!-- 管理者がログインしている場合-->
               <% if admin_signed_in? %>
                 <li class="nav-item mx-3">
-                  <%= link_to '会員一覧', admin_users_path, class: 'nav-link text-dark' %>
+                  <%= link_to admin_users_path, class: 'nav-link text-dark' do %>
+                    <i class="fa-solid fa-users">会員一覧</i>
+                  <% end %>
                 </li>
 
                 <li class="nav-item mx-3">
-                  <%= link_to '投稿一覧', admin_posts_path, class: 'nav-link text-dark' %>
+                  <%= link_to admin_posts_path, class: 'nav-link text-dark' do %>
+                    <i class="fa-sharp fa-solid fa-comments">投稿一覧</i>
+                  <% end %>
                 </li>
 
                 <li class="nav-item mx-3">
-                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+                  <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
+                    <i class="fa-solid fa-right-from-bracket">ログアウト</i>
+                  <% end %>
                 </li>
 
               <!--ログインしているとき-->
@@ -47,15 +53,21 @@
                 </li>
 
                 <li class="nav-item mx-3">
-                  <%= link_to '新規投稿', new_post_path, class: 'nav-link text-dark' %>
+                  <%= link_to new_post_path, class: 'nav-link text-dark' do %>
+                    <i class="fa-solid fa-plus">新規投稿</i>
+                  <% end %>
                 </li>
 
                 <li class="nav-item mx-3">
-                  <%= link_to '投稿一覧', posts_path, class: 'nav-link text-dark' %>
+                  <%= link_to posts_path, class: 'nav-link text-dark' do %>
+                    <i class="fa-sharp fa-solid fa-comments">投稿一覧</i>
+                  <% end %>
                 </li>
 
                 <li class="nav-item mx-3">
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
+                    <i class="fa-solid fa-right-from-bracket">ログアウト</i>
+                  <% end %>
                 </li>
 
 
@@ -63,15 +75,21 @@
                 <% else %>
 
                 <li class="nav-item mx-3">
-                  <%= link_to '投稿一覧', posts_path, data: {"turbolinks" => false}, class: 'nav-link text-dark' %>
+                  <%= link_to posts_path, class: 'nav-link text-dark' do %>
+                    <i class="fa-sharp fa-solid fa-comments">投稿一覧</i>
+                  <% end %>
                 </li>
 
                 <li class="nav-item mx-3">
-                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+                  <%= link_to new_user_registration_path, class: 'nav-link text-dark' do %>
+                    <i class="fa-solid fa-user-plus">新規登録</i>
+                  <% end %>
                 </li>
 
                 <li class="nav-item mx-3">
-                  <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+                  <%= link_to new_user_session_path, class: 'nav-link text-dark' do %>
+                    <i class="fa-solid fa-right-to-bracket">ログイン</i>
+                  <% end %>
                 </li>
               <% end %>
             </ul>
