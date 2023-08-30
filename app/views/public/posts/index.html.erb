@@ -15,7 +15,9 @@
               <%= render 'public/favorites/favorite', post: post %>
             </div>
             <div class="col-md-3 d-flex align-items-center">
-              <%= link_to "#{post.post_comments.count} コメント", post_path(post) %>
+              <%= link_to post_path(post) do %>
+              <%= render 'public/post_comments/comment_count', post: post %>
+              <% end %>
             </div>
         </div>
 
