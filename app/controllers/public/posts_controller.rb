@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
 
   def index
     @posts = Post.all.order(created_at: :desc)
@@ -19,7 +20,8 @@ class Public::PostsController < ApplicationController
     if @post.save
       redirect_to posts_path, notice: "投稿しました！"
     else
-      redirect_to posts_path, alert: "投稿に失敗しました！"
+      flash.now[:alert] = "投稿に失敗しました。"
+      render :new
     end
   end
 

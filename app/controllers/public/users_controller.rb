@@ -1,7 +1,9 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!
 
   def show
     @user = User.find(params[:id])
+    @user_posts = Post.where(user_id: @user).order(created_at: "DESC")
     @following_users = @user.following_users
     @follower_users = @user.follower_users
   end
