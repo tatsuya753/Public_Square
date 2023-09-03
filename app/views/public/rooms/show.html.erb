@@ -16,7 +16,7 @@
 
     <div class="col-12 text-center">
       <%= form_with model: @message, local: false do |f| %>
-         <%= f.text_field :message, placeholder: "メッセージを入力して下さい", class: "col-10 form-control form-control-lg my-5 mx-auto", id: "message_field" %>
+         <%= f.text_area :message, placeholder: "メッセージを入力して下さい", class: "col-10 form-control form-control-lg my-5 mx-auto", id: "message_field" %>
             <%= f.hidden_field :room_id, value: @room.id %>
               <%= f.submit "投稿",class: 'form-submit btn btn-lg btn-success col-4'%>
       <% end %>
@@ -25,3 +25,5 @@
     <%= link_to "マイページに戻る", user_path(current_user), class: "btn btn-secondary text-light decoration-none mx-auto my-3" %>
   </div>
 </div>
+
+<%= javascript_pack_tag 'message_field' %>

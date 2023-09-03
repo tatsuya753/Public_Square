@@ -6,13 +6,13 @@
           <%= m.created_at.strftime('%H:%M') %>
         </div>
         <div class="sendmessage my-auto mx-2">
-          <%= m.message %>
+          <%= safe_join(m.message.split("\n"), tag(:br)) %>
         </div>
         <div class="image">
           <%= image_tag m.user.get_profile_image(80, 80), class: "rounded-circle mx-3" %>
         </div>
       </div>
-      
+
   <!--相手からのメッセージ-->
     <% else %>
       <div class="row my-3">
@@ -20,12 +20,12 @@
           <%= image_tag m.user.get_profile_image(80, 80), class: "rounded-circle mx-3" %>
         </div>
         <div class="message my-auto">
-          <%= m.message %>
+          <%= safe_join(m.message.split("\n"), tag(:br)) %>
         </div>
         <div class="my-auto mx-2">
           <%= m.created_at.strftime('%H:%M') %>
         </div>
       </div>
     <% end %>
-    
+
   <% end %>
