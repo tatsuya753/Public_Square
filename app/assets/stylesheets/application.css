@@ -115,3 +115,43 @@ A:active {
   line-height: 40px;
   width: 200px;
 }
+
+
+.chats-title{
+  background-color: #9FB540;
+}
+
+.chats {
+  height: 700px;
+  width: 100%;
+  background-color: #BEE0C2;
+}
+
+.message {
+  display: flex;
+  justify-content: center; /* テキストを水平方向中央寄せ */
+  align-items: center; /* テキストを垂直方向中央寄せ */
+  height: 100%; /* テキストのコンテナの高さを100%に設定 */
+  background-color: #fff; /* メッセージの背景色 */
+  border-radius: 10px; /* 角丸 */
+  padding: 10px; /* 吹き出し内の余白 */
+  max-width: 60%; /* 吹き出しの最大幅 */
+}
+
+/* 送信メッセージの吹き出しスタイル */
+.sendmessage {
+  display: flex;
+  justify-content: center; /* テキストを水平方向中央寄せ */
+  align-items: center; /* テキストを垂直方向中央寄せ */
+  height: 100%; /* テキストのコンテナの高さを100%に設定 */
+  background-color: #F0FCF2; /* 送信メッセージの背景色 */
+  border-radius: 10px; /* 角丸 */
+  padding: 10px; /* 吹き出し内の余白 */
+  max-width: 60%; /* 吹き出しの最大幅 */
+}
+
+  /* .bottom-overflow スタイル */
+  .bottom-overflow {
+    display: flex;
+    flex-direction: column-reverse;
+  }

@@ -28,14 +28,33 @@
           <% end %>
         </div>
 
-        <div class="col-lg-6 text-center">
+        <div class="col-lg-3 text-center">
+          <% unless @user.id == current_user.id %>
+            <% if (current_user.following? @user) && (@user.following? current_user)  %>
+            <% if @isRoom == true %>
+              <a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg text-light col-lg-12 m-2"><i class="fa-solid fa-comment-dots">チャットへ</i></a>
+            <% else %>
+              <%= form_for @room do |f| %>
+                <%= fields_for @entry do |e| %>
+                  <%= e.hidden_field :user_id, value: @user.id %>
+                <% end %>
+                <%= button_tag type: "submit", class:"btn btn-primary btn-lg user-show-chat col-lg-12 m-2" do %>
+                  <i class="fa-solid fa-comment-dots">チャットを始める</i>
+                <% end %>
+              <% end %>
+            <% end %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="col-lg-3 text-center">
           <% if current_user != @user %>
             <% if current_user.following?(@user) %>
-              <%= link_to user_relationships_path(@user.id), method: :delete, class: "col-6 btn btn-lg btn-danger text-light" do %>
+              <%= link_to user_relationships_path(@user.id), method: :delete, class: "col-lg-12 btn btn-lg btn-danger text-light m-2" do %>
                 <i class="fa-solid fa-user-minus">フォロー外す</i>
               <% end %>
             <% else %>
-              <%= link_to user_relationships_path(@user.id), method: :post, class:"col-6 btn btn-lg btn-success text-light" do %>
+              <%= link_to user_relationships_path(@user.id), method: :post, class:"col-lg-12 btn btn-lg btn-success text-light m-2" do %>
                 <i class="fa-solid fa-user-plus">フォローする</i>
               <% end %>
             <% end %>
@@ -43,7 +62,7 @@
 
 
           <% if @user == current_user %>
-            <%= link_to edit_user_path(current_user), class: 'col-6 btn btn-lg btn-success text-white' do %>
+            <%= link_to edit_user_path(current_user), class: 'col-12 btn btn-lg btn-success text-white' do %>
               <i class="fa-solid fa-user-gear">プロフィール編集</i>
             <% end %>
           <% end %>
