@@ -115,3 +115,17 @@ A:active {
   line-height: 40px;
   width: 200px;
 }
+
+.chats-title{
+  background-color: #9FB540;
+}
+
+.chats {
+  height: 700px;
+  width: 100%;
+  background-color: #bee0c2;
+}
+
+.message{
+  background-color: #fff;
+}

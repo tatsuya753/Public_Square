@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-11 text-center mt-5 mx-auto">
+      <% @entries.each do |e| %>
+        <% if @myUserId != e.user.id %>
+            <h2 class="chats-title text-light"><%= e.user.name %>さんとのトークルーム</h2>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="chats col-10 mx-auto">
+      <% if @messages.present? %>
+        <% @messages.each do |m| %>
+          <% @myUserId == m.user.id  %>
+            <div class="row my-3">
+                <div class="image">
+                  <%= image_tag m.user.get_profile_image(80, 80), class: "rounded-circle mx-3" %>
+                </div>
+                <div class="message">
+                  <%= m.message %>
+                </div>
+            </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-12 text-center">
+      <%= form_with model: @message do |f| %>
+         <%= f.text_field :message, placeholder: "メッセージを入力して下さい", class: "col-10 form-control form-control-lg my-5 mx-auto" %>
+            <%= f.hidden_field :room_id, value: @room.id %>
+              <%= f.submit "投稿",class: 'form-submit btn btn-lg btn-success col-4'%>
+      <% end %>
+    </div>
+
+    <%= link_to "マイページに戻る", user_path(current_user), class: "btn btn-secondary text-light decoration-none mx-auto my-3" %>
+  </div>
+ </div>
