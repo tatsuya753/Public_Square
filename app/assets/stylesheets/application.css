@@ -116,6 +116,7 @@ A:active {
   width: 200px;
 }
 
+
 .chats-title{
   background-color: #9FB540;
 }
@@ -123,9 +124,13 @@ A:active {
 .chats {
   height: 700px;
   width: 100%;
-  background-color: #bee0c2;
+  background-color: #BEE0C2;
 }
 
 .message{
   background-color: #fff;
+}
+
+.sendmessage{
+  background-color: #F0FCF2;
 }
