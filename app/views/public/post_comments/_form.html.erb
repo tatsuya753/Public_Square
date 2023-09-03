@@ -1,6 +1,8 @@
 <div class="col-4 mt-5">
   <%= form_with model: [@post, @post_comment], local: false do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.text_area :comment, placeholder: "コメントをここに", class: "col-10" %>
     <%= f.submit "送信する" %>
   <% end %>
 </div>
+
+<%= javascript_pack_tag 'post_comment' %>

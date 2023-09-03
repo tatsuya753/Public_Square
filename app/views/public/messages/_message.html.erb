@@ -2,10 +2,10 @@
   <!--自分が送ったメッセージ-->
     <% if myUserId == m.user.id  %>
       <div class="row my-3 justify-content-end">
-        <div class="my-auto">
+        <div class="mt-auto mx-2">
           <%= m.created_at.strftime('%H:%M') %>
         </div>
-        <div class="sendmessage my-auto mx-2">
+        <div class="sendmessage my-auto">
           <%= safe_join(m.message.split("\n"), tag(:br)) %>
         </div>
         <div class="image">
@@ -22,7 +22,7 @@
         <div class="message my-auto">
           <%= safe_join(m.message.split("\n"), tag(:br)) %>
         </div>
-        <div class="my-auto mx-2">
+        <div class="mt-auto mx-2">
           <%= m.created_at.strftime('%H:%M') %>
         </div>
       </div>
