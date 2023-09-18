@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-10 text-center my-5">
+    <div class="col-12 text-center my-5">
       <h1>投稿一覧</h1>
     </div>
 
     <% @posts.each do |post| %>
-      <div class="col-10 my-3 border p-0">
+      <div class="col-10 my-3 border mx-auto">
         <div class="row">
           <%= link_to user_path(post.user), class: "col-md-7 text-decoration-none text-truncate" do %>
             <%= image_tag post.user.get_profile_image(80, 80), class: "rounded-circle" %>
