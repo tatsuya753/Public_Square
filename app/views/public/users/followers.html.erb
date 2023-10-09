@@ -6,6 +6,7 @@
         <th>name</th>
         <th></th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -17,16 +18,20 @@
             <% end %>
           </td>
           <td><%= user.name %></td>
+          <td><%= link_to "プロフィールを見る", user_path(user) %></td>
+
           <td>
             <%= link_to follows_user_path(user) do %>
               <p>フォロー<%= user.followers.count %></p>
             <% end %>
           </td>
+
           <td>
             <%= link_to followers_user_path(user) do %>
               <p>フォロワー<%= user.followeds.count %></p>
             <% end %>
           </td>
+
         </tr>
       <% end %>
     </tbody>
