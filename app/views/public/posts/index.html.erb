@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center my-5">
+      <h1>投稿一覧</h1>
+    </div>
+
+    <% @posts.each do |post| %>
+      <div class="col-10 my-3 border mx-auto">
+        <div class="row">
+          <%= link_to user_path(post.user), class: "col-md-7 text-decoration-none text-truncate" do %>
+            <%= image_tag post.user.get_profile_image(80, 80), class: "rounded-circle" %>
+            <span class="mx-5 user_name"><strong><%= post.user.name %></strong></span>
+          <% end %>
+
+            <div class="col-md-2 d-flex align-items-center my-2" id="favorite_<%= post.id %>">
+              <% if user_signed_in? %>
+                <%= render 'public/favorites/favorite', post: post %>
+              <% else %>
+                <%= link_to post_favorites_path(post), method: :post do %>
+                <i class="fa-regular fa-heart fa-lg"><%= post.favorites.count %></i>
+                <% end %>
+              <% end %>
+            </div>
+
+            <div class="col-md-3 d-flex align-items-center my-2">
+              <%= link_to post_path(post) do %>
+                <%= render 'public/post_comments/comment_count', post: post %>
+              <% end %>
+            </div>
+        </div>
+
+        <div class="DivLink" data-post-id="<%= post.id %>">
+          <div class="m-3">
+            <span class="lead font-weight-bold"><%= safe_join(post.body.split("\n"), tag(:br)) %></span>
+          </div>
+
+          <div class="text-center mt-5">
+            <% if post.image.present? %>
+              <%= image_tag post.image, size: "300x300"%>
+            <% else %>
+            <% end %>
+          </div>
+
+          <div class="m-3 text-right">
+            <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+
+<%= javascript_pack_tag 'post_detail' %>

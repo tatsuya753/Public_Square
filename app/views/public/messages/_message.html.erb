@@ -1,0 +1,31 @@
+<% messages.reverse_each do |m| %>
+  <!--自分が送ったメッセージ-->
+    <% if myUserId == m.user.id  %>
+      <div class="row my-3 justify-content-end">
+        <div class="mt-auto mx-2">
+          <%= m.created_at.strftime('%H:%M') %>
+        </div>
+        <div class="sendmessage my-auto">
+          <%= safe_join(m.message.split("\n"), tag(:br)) %>
+        </div>
+        <div class="image">
+          <%= image_tag m.user.get_profile_image(80, 80), class: "rounded-circle mx-3" %>
+        </div>
+      </div>
+
+  <!--相手からのメッセージ-->
+    <% else %>
+      <div class="row my-3">
+        <div class="image">
+          <%= image_tag m.user.get_profile_image(80, 80), class: "rounded-circle mx-3" %>
+        </div>
+        <div class="message my-auto">
+          <%= safe_join(m.message.split("\n"), tag(:br)) %>
+        </div>
+        <div class="mt-auto mx-2">
+          <%= m.created_at.strftime('%H:%M') %>
+        </div>
+      </div>
+    <% end %>
+
+  <% end %>

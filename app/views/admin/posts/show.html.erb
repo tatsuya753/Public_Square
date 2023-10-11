@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10 text-center my-5">
+      <h1 id="show">投稿詳細</h1>
+    </div>
+
+    <div class="col-10 my-3 border p-0">
+        <div class="row">
+          <%= link_to admin_user_path(@post.user), class: "col-md-7 text-decoration-none text-truncate" do %>
+            <%= image_tag @post.user.get_profile_image(80, 80), class: "rounded-circle" %>
+            <span class="mx-5 user_name"><strong><%= @post.user.name %></strong></span>
+          <% end %>
+            <div class="col-md-2 d-flex align-items-center my-2" id="favorite_<%= @post.id %>">
+              <i class="fa-regular fa-heart fa-lg"><%= @post.favorites.count %></i>
+            </div>
+            <div class="col-md-3 d-flex align-items-center my-2">
+              <%= render 'public/post_comments/comment_count', post: @post %>
+            </div>
+        </div>
+
+        <div>
+          <div class="m-3">
+            <span class="lead font-weight-bold"><%= safe_join(@post.body.split("\n"), tag(:br)) %></span>
+          </div>
+
+          <div class="text-center mt-5">
+            <% if @post.image.present? %>
+              <%= image_tag @post.image, size: "500x500"%>
+            <% else %>
+            <% end %>
+          </div>
+          <div class="m-3 text-right">
+            <%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          </div>
+
+            <div class="col-12 text-right mt-2 mb-2">
+              <%= link_to "削除", admin_post_path(@post.id), method: :delete, class: 'col-2 btn btn-lg btn-danger text-white', "data-confirm" => "本当に削除しますか？" %>
+            </div>
+        </div>
+
+      </div>
+  </div>
+
+  <div id="post-comments">
+    <%= render "public/post_comments/show" , { post: @post , post_comment: @post_comment } %><br>
+  </div>
+</div>

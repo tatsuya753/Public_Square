@@ -1,24 +1,10 @@
-# README
+# PublicSquare
+**PublicSquareは、自由に投稿＆会話が出来るWebアプリケーションです！**
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```
+【管理者アカウント】
+   メールアドレス： test@test
+   パスワード： testlogin
 
-Things you may want to cover:
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

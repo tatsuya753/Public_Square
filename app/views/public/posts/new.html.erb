@@ -1,0 +1,40 @@
+<h1 class="text-center my-5">新規投稿</h1>
+
+  <div class="text-center mb-5">
+    <% if @post.errors.any? %>
+      <h5 class="col-12 text-center"><%= @post.errors.count %>件のエラーが発生しました。</h5>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+<%= form_with model: @post do |f| %>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-10 mx-auto">
+        <%= f.text_area :body, class: "form-control form-control-lg", placeholder:"投稿内容" %>
+      </div>
+
+      <div class="offset-1 col-9 mt-4">
+        <div class='image justify-content-center'>
+          <label class="labelName" for="imageSpace"></label>
+          <%= f.file_field :image, accept: "image/*", class: 'imageInput' %>
+        </div>
+        <div class="col-12 prevImageBox d-flex justify-content-center"></div>
+      </div>
+
+      <div class="col-2 mt-4">
+        <button type="submit" class="btn btn-success btn-lg rounded-circle"><i class="fa-solid fa-paper-plane"></i></button>
+      </div>
+
+
+    </div>
+  </div>
+<% end %>
+
+<%= javascript_pack_tag 'image' %>
+<%= javascript_pack_tag 'form' %>

@@ -1,0 +1,29 @@
+<div>
+  <% @post.post_comments.each do |post_comment| %>
+    <div class="col-12">
+      <div class="row mt-4 align-items-center">
+        <div class="col-lg-1">
+          <%= link_to user_path(post_comment.user) do %>
+            <%= image_tag post_comment.user.get_profile_image(80,80), class: "rounded-circle" %>
+          <% end %>
+        </div>
+        <div class="col-lg-2">
+          <%= link_to user_path(post_comment.user) do %>
+            <%= post_comment.user.name %>
+          <% end %>
+        </div>
+        <div class="col-lg-2">
+          <%= post_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+        </div>
+        <div class="col-4 text-break">
+          <%= safe_join(post_comment.comment.split("\n"), tag(:br)) %>
+        </div>
+          <% if post_comment.user == current_user %>
+        <div class="mr-auto">
+          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-danger text-light", remote:true, data: {"turbolinks" => false} %>
+        </div>
+          <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

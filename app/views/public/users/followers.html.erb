@@ -1,0 +1,38 @@
+<h2 class="my-3">フォロワー</h2>
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>name</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to user_path(user) do %>
+              <%= image_tag user.get_profile_image(80,80) %>
+            <% end %>
+          </td>
+          <td class="align-middle"><%= user.name %></td>
+          <td class="align-middle"><%= link_to "プロフィールを見る", user_path(user) %></td>
+
+          <td class="align-middle">
+            <%= link_to follows_user_path(user) do %>
+              フォロー<%= user.followers.count %>
+            <% end %>
+          </td>
+
+          <td class="align-middle">
+            <%= link_to followers_user_path(user) do %>
+              フォロワー<%= user.followeds.count %>
+            <% end %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
