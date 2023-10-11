@@ -14,21 +14,21 @@
         <tr>
           <td>
             <%= link_to user_path(user) do %>
-              <%= image_tag user.get_profile_image(50,50) %>
+              <%= image_tag user.get_profile_image(80,80) %>
             <% end %>
           </td>
-          <td><%= user.name %></td>
-          <td><%= link_to "プロフィールを見る", user_path(user) %></td>
+          <td class="align-middle"><%= user.name %></td>
+          <td class="align-middle"><%= link_to "プロフィールを見る", user_path(user) %></td>
 
-          <td>
+          <td class="align-middle">
             <%= link_to follows_user_path(user) do %>
-              <h6>フォロー<%= user.followers.count %></h6>
+              フォロー<%= user.followers.count %>
             <% end %>
           </td>
 
-          <td>
+          <td class="align-middle">
             <%= link_to followers_user_path(user) do %>
-              <h6>フォロワー<%= user.followeds.count %></h6>
+              フォロワー<%= user.followeds.count %>
             <% end %>
           </td>
 
